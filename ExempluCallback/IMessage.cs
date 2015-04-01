@@ -17,6 +17,8 @@ namespace WCFCallbacks
         [OperationContract]
         bool Unsubscribe();
         [OperationContract]
-        List<ExempluCallback.User> GetFriendList(int userId);
+        List<User> GetFriendList(int userId);
+        [OperationContract]
+        string Test();
     }
 }

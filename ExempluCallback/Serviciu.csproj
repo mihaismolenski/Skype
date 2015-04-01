@@ -7,8 +7,8 @@
     <ProjectGuid>{D452648F-EDBF-44B3-8B08-B5F6AA209BF3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExempluCallback</RootNamespace>
-    <AssemblyName>ExempluCallback</AssemblyName>
+    <RootNamespace>WCFCallbacks</RootNamespace>
+    <AssemblyName>WCFCallbacks</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -83,14 +83,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="Skype.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Skype.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="packages.config" />
     <None Include="Skype.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Skype.edmx</DependentUpon>

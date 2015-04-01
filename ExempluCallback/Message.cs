@@ -7,20 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExempluCallback
+namespace WCFCallbacks
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+    [DataContract(IsReference = true)]
     public partial class Message
     {
+        [DataMember]
         public int MessageId { get; set; }
+        [DataMember]
         public int FromUser { get; set; }
+        [DataMember]
         public int ToUser { get; set; }
+        [DataMember]
         public string Text { get; set; }
+        [DataMember]
         public System.DateTime Date { get; set; }
-    
+        [DataMember]
         public virtual User User { get; set; }
+        [DataMember]
         public virtual User User1 { get; set; }
     }
 }

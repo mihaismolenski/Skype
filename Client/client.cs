@@ -4,6 +4,7 @@ namespace MessageSender
     using System;
     using System.ServiceModel;
     using System.Windows.Forms;
+    using System.Collections.Generic;
     /// <summary>
     /// Clientul implementeaza metoda ce va fi apelata din serviciu
     /// in cadrul unui contract duplex.
@@ -95,6 +96,9 @@ namespace MessageSender
                     Console.WriteLine(">>> Sending -> " + message);
                     messageClient.AddMessage(message);
                 }
+                //ExempluCallback.User[] list = new ExempluCallback.User[10];
+                //list = messageClient.GetFriendList(1);
+                //Console.WriteLine(messageClient.Test());
             }
             void IMessageCallback.OnMessageAdded(string message,
            DateTime timestamp)

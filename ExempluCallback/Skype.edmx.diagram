@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="076926c0e59e47008044eb1b861cb92e" Name="Diagram1">
-        <EntityTypeShape EntityType="SkypeModel.Friend" Width="1.5" PointX="3" PointY="4.25" />
-        <EntityTypeShape EntityType="SkypeModel.Message" Width="1.5" PointX="3" PointY="1.125" />
-        <EntityTypeShape EntityType="SkypeModel.User" Width="1.5" PointX="0.75" PointY="2" />
-        <AssociationConnector Association="SkypeModel.FK_Friend_User" />
-        <AssociationConnector Association="SkypeModel.FK_Friend_User1" />
-        <AssociationConnector Association="SkypeModel.FK_Message_User" />
-        <AssociationConnector Association="SkypeModel.FK_Message_User1" />
+      <Diagram DiagramId="7ad4194700bd49eea7d60cd0fcbd27ff" Name="Diagram1">
+        <EntityTypeShape EntityType="SkypeModel.Friend" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkypeModel.Message" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkypeModel.User" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="SkypeModel.FK_Friend_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SkypeModel.FK_Friend_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="SkypeModel.FK_Message_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SkypeModel.FK_Message_User1" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

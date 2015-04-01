@@ -7,11 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExempluCallback
+namespace WCFCallbacks
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+    [DataContract(IsReference = true)]
     public partial class User
     {
         public User()
@@ -21,18 +22,27 @@ namespace ExempluCallback
             this.Messages = new HashSet<Message>();
             this.Messages1 = new HashSet<Message>();
         }
-    
+        [DataMember]
         public int UserId { get; set; }
+        [DataMember]
         public string Name { get; set; }
+        [DataMember]
         public string Surname { get; set; }
+        [DataMember]
         public string Phone { get; set; }
+        [DataMember]
         public string Email { get; set; }
+        [DataMember]
         public string UserName { get; set; }
+        [DataMember]
         public string Password { get; set; }
-    
+        [DataMember]
         public virtual ICollection<Friend> Friends { get; set; }
+        [DataMember]
         public virtual ICollection<Friend> Friends1 { get; set; }
+        [DataMember]
         public virtual ICollection<Message> Messages { get; set; }
+        [DataMember]
         public virtual ICollection<Message> Messages1 { get; set; }
     }
 }

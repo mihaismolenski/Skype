@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExempluCallback
+namespace WCFCallbacks
 {
     using System;
     using System.Data.Entity;
@@ -18,6 +18,7 @@ namespace ExempluCallback
         public SkypeEntities()
             : base("name=SkypeEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

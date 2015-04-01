@@ -8,37 +8,456 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+namespace ExempluCallback
+{
+    using System.Runtime.Serialization;
+
+
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "User", Namespace = "http://schemas.datacontract.org/2004/07/ExempluCallback", IsReference = true)]
+    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+
+        private string EmailField;
+
+        private ExempluCallback.Friend[] FriendsField;
+
+        private ExempluCallback.Friend[] Friends1Field;
+
+        private ExempluCallback.Message[] MessagesField;
+
+        private ExempluCallback.Message[] Messages1Field;
+
+        private string NameField;
+
+        private string PasswordField;
+
+        private string PhoneField;
+
+        private string SurnameField;
+
+        private int UserIdField;
+
+        private string UserNameField;
+
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email
+        {
+            get
+            {
+                return this.EmailField;
+            }
+            set
+            {
+                this.EmailField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ExempluCallback.Friend[] Friends
+        {
+            get
+            {
+                return this.FriendsField;
+            }
+            set
+            {
+                this.FriendsField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ExempluCallback.Friend[] Friends1
+        {
+            get
+            {
+                return this.Friends1Field;
+            }
+            set
+            {
+                this.Friends1Field = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ExempluCallback.Message[] Messages
+        {
+            get
+            {
+                return this.MessagesField;
+            }
+            set
+            {
+                this.MessagesField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ExempluCallback.Message[] Messages1
+        {
+            get
+            {
+                return this.Messages1Field;
+            }
+            set
+            {
+                this.Messages1Field = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this.NameField;
+            }
+            set
+            {
+                this.NameField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password
+        {
+            get
+            {
+                return this.PasswordField;
+            }
+            set
+            {
+                this.PasswordField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Phone
+        {
+            get
+            {
+                return this.PhoneField;
+            }
+            set
+            {
+                this.PhoneField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Surname
+        {
+            get
+            {
+                return this.SurnameField;
+            }
+            set
+            {
+                this.SurnameField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId
+        {
+            get
+            {
+                return this.UserIdField;
+            }
+            set
+            {
+                this.UserIdField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName
+        {
+            get
+            {
+                return this.UserNameField;
+            }
+            set
+            {
+                this.UserNameField = value;
+            }
+        }
+    }
+
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "Friend", Namespace = "http://schemas.datacontract.org/2004/07/ExempluCallback", IsReference = true)]
+    public partial class Friend : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+
+        private int FriendIdField;
+
+        private int IdField;
+
+        private ExempluCallback.User UserField;
+
+        private ExempluCallback.User User1Field;
+
+        private int UserIdField;
+
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FriendId
+        {
+            get
+            {
+                return this.FriendIdField;
+            }
+            set
+            {
+                this.FriendIdField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ExempluCallback.User User
+        {
+            get
+            {
+                return this.UserField;
+            }
+            set
+            {
+                this.UserField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ExempluCallback.User User1
+        {
+            get
+            {
+                return this.User1Field;
+            }
+            set
+            {
+                this.User1Field = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId
+        {
+            get
+            {
+                return this.UserIdField;
+            }
+            set
+            {
+                this.UserIdField = value;
+            }
+        }
+    }
+
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "Message", Namespace = "http://schemas.datacontract.org/2004/07/ExempluCallback", IsReference = true)]
+    public partial class Message : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+
+        private System.DateTime DateField;
+
+        private int FromUserField;
+
+        private int MessageIdField;
+
+        private string TextField;
+
+        private int ToUserField;
+
+        private ExempluCallback.User UserField;
+
+        private ExempluCallback.User User1Field;
+
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Date
+        {
+            get
+            {
+                return this.DateField;
+            }
+            set
+            {
+                this.DateField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FromUser
+        {
+            get
+            {
+                return this.FromUserField;
+            }
+            set
+            {
+                this.FromUserField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MessageId
+        {
+            get
+            {
+                return this.MessageIdField;
+            }
+            set
+            {
+                this.MessageIdField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Text
+        {
+            get
+            {
+                return this.TextField;
+            }
+            set
+            {
+                this.TextField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ToUser
+        {
+            get
+            {
+                return this.ToUserField;
+            }
+            set
+            {
+                this.ToUserField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ExempluCallback.User User
+        {
+            get
+            {
+                return this.UserField;
+            }
+            set
+            {
+                this.UserField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ExempluCallback.User User1
+        {
+            get
+            {
+                return this.User1Field;
+            }
+            set
+            {
+                this.User1Field = value;
+            }
+        }
+    }
+}
 
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-[System.ServiceModel.ServiceContractAttribute(ConfigurationName="IMessage", CallbackContract=typeof(IMessageCallback))]
+[System.ServiceModel.ServiceContractAttribute(ConfigurationName = "IMessage", CallbackContract = typeof(IMessageCallback))]
 public interface IMessage
 {
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessage/AddMessage", ReplyAction="http://tempuri.org/IMessage/AddMessageResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/AddMessage", ReplyAction = "http://tempuri.org/IMessage/AddMessageResponse")]
     void AddMessage(string message);
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessage/AddMessage", ReplyAction="http://tempuri.org/IMessage/AddMessageResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/AddMessage", ReplyAction = "http://tempuri.org/IMessage/AddMessageResponse")]
     System.Threading.Tasks.Task AddMessageAsync(string message);
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessage/Subscribe", ReplyAction="http://tempuri.org/IMessage/SubscribeResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/Subscribe", ReplyAction = "http://tempuri.org/IMessage/SubscribeResponse")]
     bool Subscribe();
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessage/Subscribe", ReplyAction="http://tempuri.org/IMessage/SubscribeResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/Subscribe", ReplyAction = "http://tempuri.org/IMessage/SubscribeResponse")]
     System.Threading.Tasks.Task<bool> SubscribeAsync();
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessage/Unsubscribe", ReplyAction="http://tempuri.org/IMessage/UnsubscribeResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/Unsubscribe", ReplyAction = "http://tempuri.org/IMessage/UnsubscribeResponse")]
     bool Unsubscribe();
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessage/Unsubscribe", ReplyAction="http://tempuri.org/IMessage/UnsubscribeResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/Unsubscribe", ReplyAction = "http://tempuri.org/IMessage/UnsubscribeResponse")]
     System.Threading.Tasks.Task<bool> UnsubscribeAsync();
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/GetFriendList", ReplyAction = "http://tempuri.org/IMessage/GetFriendListResponse")]
+    ExempluCallback.User[] GetFriendList(int userId);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/GetFriendList", ReplyAction = "http://tempuri.org/IMessage/GetFriendListResponse")]
+    System.Threading.Tasks.Task<ExempluCallback.User[]> GetFriendListAsync(int userId);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
 public interface IMessageCallback
 {
-    
-    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessage/OnMessageAdded")]
+
+    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IMessage/OnMessageAdded")]
     void OnMessageAdded(string message, System.DateTime timestamp);
 }
 
@@ -51,59 +470,69 @@ public interface IMessageChannel : IMessage, System.ServiceModel.IClientChannel
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
 public partial class MessageClient : System.ServiceModel.DuplexClientBase<IMessage>, IMessage
 {
-    
-    public MessageClient(System.ServiceModel.InstanceContext callbackInstance) : 
-            base(callbackInstance)
+
+    public MessageClient(System.ServiceModel.InstanceContext callbackInstance) :
+        base(callbackInstance)
     {
     }
-    
-    public MessageClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
-            base(callbackInstance, endpointConfigurationName)
+
+    public MessageClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) :
+        base(callbackInstance, endpointConfigurationName)
     {
     }
-    
-    public MessageClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
-            base(callbackInstance, endpointConfigurationName, remoteAddress)
+
+    public MessageClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) :
+        base(callbackInstance, endpointConfigurationName, remoteAddress)
     {
     }
-    
-    public MessageClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-            base(callbackInstance, endpointConfigurationName, remoteAddress)
+
+    public MessageClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
+        base(callbackInstance, endpointConfigurationName, remoteAddress)
     {
     }
-    
-    public MessageClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-            base(callbackInstance, binding, remoteAddress)
+
+    public MessageClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
+        base(callbackInstance, binding, remoteAddress)
     {
     }
-    
+
     public void AddMessage(string message)
     {
         base.Channel.AddMessage(message);
     }
-    
+
     public System.Threading.Tasks.Task AddMessageAsync(string message)
     {
         return base.Channel.AddMessageAsync(message);
     }
-    
+
     public bool Subscribe()
     {
         return base.Channel.Subscribe();
     }
-    
+
     public System.Threading.Tasks.Task<bool> SubscribeAsync()
     {
         return base.Channel.SubscribeAsync();
     }
-    
+
     public bool Unsubscribe()
     {
         return base.Channel.Unsubscribe();
     }
-    
+
     public System.Threading.Tasks.Task<bool> UnsubscribeAsync()
     {
         return base.Channel.UnsubscribeAsync();
+    }
+
+    public ExempluCallback.User[] GetFriendList(int userId)
+    {
+        return base.Channel.GetFriendList(userId);
+    }
+
+    public System.Threading.Tasks.Task<ExempluCallback.User[]> GetFriendListAsync(int userId)
+    {
+        return base.Channel.GetFriendListAsync(userId);
     }
 }
