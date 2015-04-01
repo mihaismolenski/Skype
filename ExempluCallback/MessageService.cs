@@ -63,5 +63,10 @@ namespace WCFCallbacks
                 return false;
             }
         }
+
+        public List<ExempluCallback.User> GetFriendList(int userId)
+        {
+            return FriendHelper.GetFriends(userId);
+        }
     }
 }

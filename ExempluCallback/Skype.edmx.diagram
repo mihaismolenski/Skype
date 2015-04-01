@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="076926c0e59e47008044eb1b861cb92e" Name="Diagram1">
-        <EntityTypeShape EntityType="SkypeModel.Friend" Width="1.5" PointX="3" PointY="1.125" />
-        <EntityTypeShape EntityType="SkypeModel.Message" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="SkypeModel.Friend" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="SkypeModel.Message" Width="1.5" PointX="3" PointY="1.125" />
         <EntityTypeShape EntityType="SkypeModel.User" Width="1.5" PointX="0.75" PointY="2" />
         <AssociationConnector Association="SkypeModel.FK_Friend_User" />
         <AssociationConnector Association="SkypeModel.FK_Friend_User1" />

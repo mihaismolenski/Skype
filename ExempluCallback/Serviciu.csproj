@@ -52,6 +52,10 @@
     <Compile Include="Friend.cs">
       <DependentUpon>Skype.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AccountHelper.cs" />
+    <Compile Include="Helpers\ConversationHelper.cs" />
+    <Compile Include="Helpers\FriendHelper.cs" />
+    <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="IMessage.cs" />
     <Compile Include="IMessageCallback.cs" />
     <Compile Include="Message.cs">
