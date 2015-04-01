@@ -8,14 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExempluCallback
+namespace WCFCallbacks
 {
     using System.Runtime.Serialization;
 
 
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name = "User", Namespace = "http://schemas.datacontract.org/2004/07/ExempluCallback", IsReference = true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "User", Namespace = "http://schemas.datacontract.org/2004/07/WCFCallbacks", IsReference = true)]
     public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject
     {
 
@@ -23,13 +23,13 @@ namespace ExempluCallback
 
         private string EmailField;
 
-        private ExempluCallback.Friend[] FriendsField;
+        private WCFCallbacks.Friend[] FriendsField;
 
-        private ExempluCallback.Friend[] Friends1Field;
+        private WCFCallbacks.Friend[] Friends1Field;
 
-        private ExempluCallback.Message[] MessagesField;
+        private WCFCallbacks.Message[] MessagesField;
 
-        private ExempluCallback.Message[] Messages1Field;
+        private WCFCallbacks.Message[] Messages1Field;
 
         private string NameField;
 
@@ -69,7 +69,7 @@ namespace ExempluCallback
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ExempluCallback.Friend[] Friends
+        public WCFCallbacks.Friend[] Friends
         {
             get
             {
@@ -82,7 +82,7 @@ namespace ExempluCallback
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ExempluCallback.Friend[] Friends1
+        public WCFCallbacks.Friend[] Friends1
         {
             get
             {
@@ -95,7 +95,7 @@ namespace ExempluCallback
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ExempluCallback.Message[] Messages
+        public WCFCallbacks.Message[] Messages
         {
             get
             {
@@ -108,7 +108,7 @@ namespace ExempluCallback
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ExempluCallback.Message[] Messages1
+        public WCFCallbacks.Message[] Messages1
         {
             get
             {
@@ -201,7 +201,7 @@ namespace ExempluCallback
 
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name = "Friend", Namespace = "http://schemas.datacontract.org/2004/07/ExempluCallback", IsReference = true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "Friend", Namespace = "http://schemas.datacontract.org/2004/07/WCFCallbacks", IsReference = true)]
     public partial class Friend : object, System.Runtime.Serialization.IExtensibleDataObject
     {
 
@@ -211,9 +211,9 @@ namespace ExempluCallback
 
         private int IdField;
 
-        private ExempluCallback.User UserField;
+        private WCFCallbacks.User UserField;
 
-        private ExempluCallback.User User1Field;
+        private WCFCallbacks.User User1Field;
 
         private int UserIdField;
 
@@ -256,7 +256,7 @@ namespace ExempluCallback
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ExempluCallback.User User
+        public WCFCallbacks.User User
         {
             get
             {
@@ -269,7 +269,7 @@ namespace ExempluCallback
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ExempluCallback.User User1
+        public WCFCallbacks.User User1
         {
             get
             {
@@ -297,7 +297,7 @@ namespace ExempluCallback
 
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name = "Message", Namespace = "http://schemas.datacontract.org/2004/07/ExempluCallback", IsReference = true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "Message", Namespace = "http://schemas.datacontract.org/2004/07/WCFCallbacks", IsReference = true)]
     public partial class Message : object, System.Runtime.Serialization.IExtensibleDataObject
     {
 
@@ -313,9 +313,9 @@ namespace ExempluCallback
 
         private int ToUserField;
 
-        private ExempluCallback.User UserField;
+        private WCFCallbacks.User UserField;
 
-        private ExempluCallback.User User1Field;
+        private WCFCallbacks.User User1Field;
 
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -395,7 +395,7 @@ namespace ExempluCallback
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ExempluCallback.User User
+        public WCFCallbacks.User User
         {
             get
             {
@@ -408,7 +408,7 @@ namespace ExempluCallback
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ExempluCallback.User User1
+        public WCFCallbacks.User User1
         {
             get
             {
@@ -447,10 +447,16 @@ public interface IMessage
     System.Threading.Tasks.Task<bool> UnsubscribeAsync();
 
     [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/GetFriendList", ReplyAction = "http://tempuri.org/IMessage/GetFriendListResponse")]
-    ExempluCallback.User[] GetFriendList(int userId);
+    WCFCallbacks.User[] GetFriendList(int userId);
 
     [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/GetFriendList", ReplyAction = "http://tempuri.org/IMessage/GetFriendListResponse")]
-    System.Threading.Tasks.Task<ExempluCallback.User[]> GetFriendListAsync(int userId);
+    System.Threading.Tasks.Task<WCFCallbacks.User[]> GetFriendListAsync(int userId);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/Test", ReplyAction = "http://tempuri.org/IMessage/TestResponse")]
+    string Test();
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/Test", ReplyAction = "http://tempuri.org/IMessage/TestResponse")]
+    System.Threading.Tasks.Task<string> TestAsync();
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -526,13 +532,23 @@ public partial class MessageClient : System.ServiceModel.DuplexClientBase<IMessa
         return base.Channel.UnsubscribeAsync();
     }
 
-    public ExempluCallback.User[] GetFriendList(int userId)
+    public WCFCallbacks.User[] GetFriendList(int userId)
     {
         return base.Channel.GetFriendList(userId);
     }
 
-    public System.Threading.Tasks.Task<ExempluCallback.User[]> GetFriendListAsync(int userId)
+    public System.Threading.Tasks.Task<WCFCallbacks.User[]> GetFriendListAsync(int userId)
     {
         return base.Channel.GetFriendListAsync(userId);
+    }
+
+    public string Test()
+    {
+        return base.Channel.Test();
+    }
+
+    public System.Threading.Tasks.Task<string> TestAsync()
+    {
+        return base.Channel.TestAsync();
     }
 }

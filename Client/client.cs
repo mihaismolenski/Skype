@@ -96,9 +96,9 @@ namespace MessageSender
                     Console.WriteLine(">>> Sending -> " + message);
                     messageClient.AddMessage(message);
                 }
-                //ExempluCallback.User[] list = new ExempluCallback.User[10];
-                //list = messageClient.GetFriendList(1);
-                //Console.WriteLine(messageClient.Test());
+                WCFCallbacks.User[] list = new WCFCallbacks.User[10];
+                list = messageClient.GetFriendList(1);
+
             }
             void IMessageCallback.OnMessageAdded(string message,
            DateTime timestamp)
