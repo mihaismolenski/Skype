@@ -13,12 +13,24 @@ namespace WCFCallbacks
         [OperationContract]
         void AddMessage(string message);
         [OperationContract]
-        bool Subscribe();
+        bool Subscribe(int id);
         [OperationContract]
         bool Unsubscribe();
         [OperationContract]
         List<User> GetFriendList(int userId);
         [OperationContract]
         string Test();
+        [OperationContract]
+        int LogIn(string username, string password);
+        [OperationContract]
+        int Register(string name, string surname, string email, string phone, string username, string password);
+        [OperationContract]
+        void SendMessage(int from, int to, string message);
+        [OperationContract]
+        List<Message> GetMessages(int userId, int friendId);
+        [OperationContract]
+        void AddFriend(int userId, int friendId);
+        [OperationContract]
+        void LogOut(int userId);
     }
 }

@@ -8,7 +8,7 @@ namespace WCFCallbacks
 {
     class UserHelper
     {
-        public static void InsertUser(string name, string surname, string phone, string email, string username, string password)
+        public static int InsertUser(string name, string surname, string phone, string email, string username, string password)
         {
             using (var dc = new SkypeEntities())
             {
@@ -24,6 +24,7 @@ namespace WCFCallbacks
                 //dc.AddTotest(t);
                 dc.Users.Add(user);
                 dc.SaveChanges();
+                return user.UserId;
             }
         }
 

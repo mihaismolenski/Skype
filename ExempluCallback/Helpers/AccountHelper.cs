@@ -23,15 +23,14 @@ namespace WCFCallbacks
             }
         }
 
-        public static bool Register(string name, string surname, string phone, string email, string username,string password)
+        public static int Register(string name, string surname, string phone, string email, string username,string password)
         {
             if (name == String.Empty || surname == String.Empty || phone == String.Empty || email == String.Empty ||
                 username == String.Empty || password == String.Empty)
             {
-                return false;
+                return -1;
             }
-            UserHelper.InsertUser(name, surname, phone, email, username, password);
-            return true;
+            return UserHelper.InsertUser(name, surname, phone, email, username, password);
         }
     }
 }

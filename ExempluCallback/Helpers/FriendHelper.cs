@@ -51,5 +51,18 @@ namespace WCFCallbacks
                 return friends;
             }
         }
+
+        public static bool IsFriendWith(int userId, int friendId)
+        {
+            using (var context = new SkypeEntities())
+            {
+                var fs = context.Friends.FirstOrDefault(a=>a.UserId == userId && a.FriendId == friendId);
+                if (fs != null)
+                {
+                    return true;
+                }
+                else return false;
+            }
+        }
     }
 }

@@ -435,10 +435,10 @@ public interface IMessage
     System.Threading.Tasks.Task AddMessageAsync(string message);
 
     [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/Subscribe", ReplyAction = "http://tempuri.org/IMessage/SubscribeResponse")]
-    bool Subscribe();
+    bool Subscribe(int id);
 
     [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/Subscribe", ReplyAction = "http://tempuri.org/IMessage/SubscribeResponse")]
-    System.Threading.Tasks.Task<bool> SubscribeAsync();
+    System.Threading.Tasks.Task<bool> SubscribeAsync(int id);
 
     [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/Unsubscribe", ReplyAction = "http://tempuri.org/IMessage/UnsubscribeResponse")]
     bool Unsubscribe();
@@ -457,6 +457,42 @@ public interface IMessage
 
     [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/Test", ReplyAction = "http://tempuri.org/IMessage/TestResponse")]
     System.Threading.Tasks.Task<string> TestAsync();
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/LogIn", ReplyAction = "http://tempuri.org/IMessage/LogInResponse")]
+    int LogIn(string username, string password);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/LogIn", ReplyAction = "http://tempuri.org/IMessage/LogInResponse")]
+    System.Threading.Tasks.Task<int> LogInAsync(string username, string password);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/Register", ReplyAction = "http://tempuri.org/IMessage/RegisterResponse")]
+    int Register(string name, string surname, string email, string phone, string username, string password);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/Register", ReplyAction = "http://tempuri.org/IMessage/RegisterResponse")]
+    System.Threading.Tasks.Task<int> RegisterAsync(string name, string surname, string email, string phone, string username, string password);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/SendMessage", ReplyAction = "http://tempuri.org/IMessage/SendMessageResponse")]
+    void SendMessage(int from, int to, string message);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/SendMessage", ReplyAction = "http://tempuri.org/IMessage/SendMessageResponse")]
+    System.Threading.Tasks.Task SendMessageAsync(int from, int to, string message);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/GetMessages", ReplyAction = "http://tempuri.org/IMessage/GetMessagesResponse")]
+    WCFCallbacks.Message[] GetMessages(int userId, int friendId);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/GetMessages", ReplyAction = "http://tempuri.org/IMessage/GetMessagesResponse")]
+    System.Threading.Tasks.Task<WCFCallbacks.Message[]> GetMessagesAsync(int userId, int friendId);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/AddFriend", ReplyAction = "http://tempuri.org/IMessage/AddFriendResponse")]
+    void AddFriend(int userId, int friendId);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/AddFriend", ReplyAction = "http://tempuri.org/IMessage/AddFriendResponse")]
+    System.Threading.Tasks.Task AddFriendAsync(int userId, int friendId);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/LogOut", ReplyAction = "http://tempuri.org/IMessage/LogOutResponse")]
+    void LogOut(int userId);
+
+    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IMessage/LogOut", ReplyAction = "http://tempuri.org/IMessage/LogOutResponse")]
+    System.Threading.Tasks.Task LogOutAsync(int userId);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -465,6 +501,15 @@ public interface IMessageCallback
 
     [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IMessage/OnMessageAdded")]
     void OnMessageAdded(string message, System.DateTime timestamp);
+
+    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IMessage/OnFriendConnected")]
+    void OnFriendConnected(int friendId, System.DateTime timestamp);
+
+    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IMessage/OnFriendDisconnected")]
+    void OnFriendDisconnected(int friendId, System.DateTime timestamp);
+
+    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IMessage/OnMessageSent")]
+    void OnMessageSent(int from, int to, string message, System.DateTime timestamp);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -512,14 +557,14 @@ public partial class MessageClient : System.ServiceModel.DuplexClientBase<IMessa
         return base.Channel.AddMessageAsync(message);
     }
 
-    public bool Subscribe()
+    public bool Subscribe(int id)
     {
-        return base.Channel.Subscribe();
+        return base.Channel.Subscribe(id);
     }
 
-    public System.Threading.Tasks.Task<bool> SubscribeAsync()
+    public System.Threading.Tasks.Task<bool> SubscribeAsync(int id)
     {
-        return base.Channel.SubscribeAsync();
+        return base.Channel.SubscribeAsync(id);
     }
 
     public bool Unsubscribe()
@@ -550,5 +595,65 @@ public partial class MessageClient : System.ServiceModel.DuplexClientBase<IMessa
     public System.Threading.Tasks.Task<string> TestAsync()
     {
         return base.Channel.TestAsync();
+    }
+
+    public int LogIn(string username, string password)
+    {
+        return base.Channel.LogIn(username, password);
+    }
+
+    public System.Threading.Tasks.Task<int> LogInAsync(string username, string password)
+    {
+        return base.Channel.LogInAsync(username, password);
+    }
+
+    public int Register(string name, string surname, string email, string phone, string username, string password)
+    {
+        return base.Channel.Register(name, surname, email, phone, username, password);
+    }
+
+    public System.Threading.Tasks.Task<int> RegisterAsync(string name, string surname, string email, string phone, string username, string password)
+    {
+        return base.Channel.RegisterAsync(name, surname, email, phone, username, password);
+    }
+
+    public void SendMessage(int from, int to, string message)
+    {
+        base.Channel.SendMessage(from, to, message);
+    }
+
+    public System.Threading.Tasks.Task SendMessageAsync(int from, int to, string message)
+    {
+        return base.Channel.SendMessageAsync(from, to, message);
+    }
+
+    public WCFCallbacks.Message[] GetMessages(int userId, int friendId)
+    {
+        return base.Channel.GetMessages(userId, friendId);
+    }
+
+    public System.Threading.Tasks.Task<WCFCallbacks.Message[]> GetMessagesAsync(int userId, int friendId)
+    {
+        return base.Channel.GetMessagesAsync(userId, friendId);
+    }
+
+    public void AddFriend(int userId, int friendId)
+    {
+        base.Channel.AddFriend(userId, friendId);
+    }
+
+    public System.Threading.Tasks.Task AddFriendAsync(int userId, int friendId)
+    {
+        return base.Channel.AddFriendAsync(userId, friendId);
+    }
+
+    public void LogOut(int userId)
+    {
+        base.Channel.LogOut(userId);
+    }
+
+    public System.Threading.Tasks.Task LogOutAsync(int userId)
+    {
+        return base.Channel.LogOutAsync(userId);
     }
 }

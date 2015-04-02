@@ -9,9 +9,15 @@ namespace WCFCallbacks
 {
     using System;
     using System.ServiceModel;
-    interface IMessageCallback
+    public interface IMessageCallback
     {
         [OperationContract(IsOneWay = true)]
         void OnMessageAdded(string message, DateTime timestamp);
+        [OperationContract(IsOneWay = true)]
+        void OnFriendConnected(int friendId, DateTime timestamp);
+        [OperationContract(IsOneWay = true)]
+        void OnFriendDisconnected(int friendId, DateTime timestamp);
+        [OperationContract(IsOneWay = true)]
+        void OnMessageSent(int from, int to, string message, DateTime timestamp);
     }
 }
