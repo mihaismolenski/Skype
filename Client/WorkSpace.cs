@@ -13,6 +13,7 @@ namespace Client
 {
     public partial class WorkSpace : Form
     {
+        
         public WorkSpace(string username)
         {
             InitializeComponent();

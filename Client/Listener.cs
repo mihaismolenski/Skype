@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ServiceModel;
 using System.Threading;
 
+
 namespace MessageSender
 {
     /// <summary>
@@ -48,11 +49,13 @@ namespace MessageSender
         void IMessageCallback.OnMessageSent(int from, int to, string message, DateTime timestamp)
         {
             Console.WriteLine("<<< [Listner OnMessageSent] >>> Recieved {0} with a timestamp of {1}", message, timestamp);
+
         }
 
         void IMessageCallback.OnFriendConnected(int friendId, DateTime timestamp)
         {
             Console.WriteLine("<<< [Listner OnFriendConnected] >>> Recieved {0} with a timestamp of {1}", friendId, timestamp);
+            Client.workSpace.TextBoxFriend.Text += "OnFriendConnected";
         }
 
         void IMessageCallback.OnFriendDisconnected(int id, DateTime timestamp)

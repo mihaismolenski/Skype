@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.welcome = new System.Windows.Forms.Label();
+            this.TextBoxFriend = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // welcome
@@ -41,11 +42,20 @@
             this.welcome.TabIndex = 0;
             this.welcome.Text = "Bun venit ";
             // 
+            // TextBoxFriend
+            // 
+            this.TextBoxFriend.Location = new System.Drawing.Point(38, 92);
+            this.TextBoxFriend.Multiline = true;
+            this.TextBoxFriend.Name = "TextBoxFriend";
+            this.TextBoxFriend.Size = new System.Drawing.Size(372, 163);
+            this.TextBoxFriend.TabIndex = 1;
+            // 
             // WorkSpace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(730, 470);
+            this.Controls.Add(this.TextBoxFriend);
             this.Controls.Add(this.welcome);
             this.Name = "WorkSpace";
             this.Text = "Skype";
@@ -57,5 +67,6 @@
         #endregion
 
         private System.Windows.Forms.Label welcome;
+        public System.Windows.Forms.TextBox TextBoxFriend;
     }
 }
