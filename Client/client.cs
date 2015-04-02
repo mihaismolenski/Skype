@@ -1,10 +1,13 @@
-﻿// Fisierul Client.cs
+﻿using System;
+using System.ServiceModel;
+using System.Windows.Forms;
+using System.Collections.Generic;
+using Client;
+using System.Threading;
+
+// Fisierul Client.cs
 namespace MessageSender
 {
-    using System;
-    using System.ServiceModel;
-    using System.Windows.Forms;
-    using System.Collections.Generic;
     /// <summary>
     /// Clientul implementeaza metoda ce va fi apelata din serviciu
     /// in cadrul unui contract duplex.
@@ -22,22 +25,23 @@ namespace MessageSender
     public class Client
     {
         public static InterfataClient interfata;
+        public static WorkSpace workSpace;
+        private static Listener listener;
+        private static Sender sender;
+        //public static SynchronizationContext _SyncContext = null;
         static void Main(string[] args)
         {
-            Console.WriteLine("Press enter when the server is running.");
-            Console.ReadKey();
-            
+
             //pornire interfata
-            /*Application.EnableVisualStyles();
+            Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             interfata = new InterfataClient();
-            Application.Run(interfata);*/
-
+            Application.Run(interfata);
             // Subscribe pe server. Instiintez serviciul pe
             // ce obiect sa apeleze callback.
             // Se va apela callback pe metoda OnMessageAdded
             // din clasa Listner.
-            Listener listener = new Listener();
+            /*Listener listener = new Listener();
             listener.Open();
             listener.LogIn();
             Console.ReadKey();
@@ -47,171 +51,53 @@ namespace MessageSender
             Console.ReadKey();
             sender.Dispose();
             listener.Dispose();
-            Console.WriteLine("Done, press enter to exit");
-            
+            Console.WriteLine("Done, press enter to exit");*/
+
         }
 
-        public static void Connect() 
+        public static void Connect()
         {
             // Subscribe pe server. Instiintez serviciul pe
             // ce obiect sa apeleze callback.
             // Se va apela callback pe metoda OnMessageAdded
             // din clasa Listner.
-            Listener listener = new Listener();
+            listener = new Listener();
             listener.Open();
             // Apelez metoda AddMessage din serviciu
-            Sender sender = new Sender();
+            sender = new Sender();
             sender.Go();
+
+            Console.WriteLine("Done, press enter to exit");
+        }
+
+        public static void Disconnect()
+        {
             sender.Dispose();
             listener.Dispose();
-            Console.WriteLine("Done, press enter to exit");
-            Console.ReadKey();
         }
 
-        /// <summary>
-        /// Obiecte din aceasta clasa apeleaza metoda AddMessage din serviciu.
-        /// Initiatorul conversatiei
-        /// </summary>
-        [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
-        class Sender : IMessageCallback, IDisposable
+        public static bool Login(string name, string pass)
         {
-            // Creez obiect de pe server
-            private MessageClient messageClient;
-            public void Go()
+            int index = sender.LogIn(name, pass);
+            if (index >= 0)
             {
-                // Reprezinta informatia de context pentru instanta serviciului
-                // Cu acest context din proxy generat - clasa MessageClient -
-                // se construieste un obiect
-                // folosind un ctor cu doi parametri
-                // In app.config din client veti gasi
-                /*
-               <endpoint
-                address="net.tcp://localhost:9191/WCFCallbacks/Message"
-                binding="netTcpBinding"
-                bindingConfiguration="NetTcpBinding_IMessage"
-                contract="IMessage" name="NetTcpBinding_IMessage"
-               >
-                */
-                // al doilea parametru fiind bindingConfiguration
-                // context e necesar in procesul callback
-                InstanceContext context = new InstanceContext(this);
-
-                messageClient = new MessageClient(context, "NetTcpBinding_IMessage");
-                // atentie: e case sensitive "NetTcpBinding"
-
-                //
-                // Daca decomentam linia ce urmeaza atunci se va executa
-                // IMessageCallback.OnMessageAdded(...) implementata
-                // in aceasta clasa.
-                // messageClient.Subscribe();
-                //
-                for (int i = 0; i < 5; i++)
-                {
-                    string message = string.Format("message #{0}", i);
-                    Console.WriteLine(">>> Sending -> " + message);
-                    messageClient.AddMessage(message);
-                }
-                //WCFCallbacks.User[] list = new WCFCallbacks.User[100];
-                //list = messageClient.GetFriendList(1);
-               
+                workSpace = new WorkSpace(name);
+                interfata.Hide();
+                workSpace.Show();
+                return true;
             }
 
-            public void LogIn()
-            {
-                InstanceContext context = new InstanceContext(this);
-                messageClient = new MessageClient(context, "NetTcpBinding_IMessage");
-                int id = messageClient.LogIn("mihai", "mihai");
-            }
-
-            void IMessageCallback.OnMessageAdded(string message,  DateTime timestamp)
-            {
-                Console.WriteLine("<<< [Sender OnMessageAdded] => Recieved {0} with a timestamp of {1}",
-                message, timestamp);
-                //interfata.richTextBox1.Text += "<<< [Sender OnMessageAdded] => Recieved {0} with a timestamp of {1}";
-            }
-
-            void IMessageCallback.OnMessageSent(int from, int to, string message, DateTime timestamp)
-            {
-                interfata.richTextBox1.Text += message + " - primit de la " + from.ToString() + "\n";
-            }
-
-            void IMessageCallback.OnFriendConnected(int id, DateTime timestamp)
-            {
-                interfata.richTextBox1.Text += id.ToString() + " conectat\n";
-            }
-
-            void IMessageCallback.OnFriendDisconnected(int id, DateTime timestamp)
-            {
-                interfata.richTextBox1.Text += id.ToString() + " deconectat\n";
-            }
-
-            public void Dispose()
-            {
-                messageClient.Close();
-            }
+            return false;
         }
-        /// <summary>
-        /// Aceasta clasa e folosita pentru a indica metoda din client
-        /// ce va fi apelata din cadrul serviciului.
-        /// Observati ca se implementeaza interfata IMessageCallback.
-        /// </summary>
-        [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
-        class Listener : IMessageCallback, IDisposable
+
+        public static void Register(string username, string pass)
         {
-            private MessageClient messageClient;
-            public void Open()
-            {
-                // Reprezinta informatia de context pentru instanta serviciului
-                // Cu acest context din proxy generat - clasa MessageClient –
-                // se construieste un obiect
-                // folosind un ctor cu doi parametri
-                // In app.config din client veti gasi
-                /*
-               <endpoint
-                address="net.tcp://localhost:9191/WCFCallbacks/Message"
-                binding="netTcpBinding"
-                bindingConfiguration="NetTcpBinding_IMessage"
-                contract="IMessage" name="NetTcpBinding_IMessage">
-                */
-                // al doilea parametru fiind bindingConfiguration
-                // context e necesar in procesul callback
-                InstanceContext context = new InstanceContext(this);
-                messageClient = new MessageClient(context,  "NetTcpBinding_IMessage");
-                messageClient.Subscribe(1);
-            }
+            string name = "Aurica";
+            string surname = "Degetica";
+            string email = "samsonel@yahoo.com";
+            string phone = "0323462910";
 
-            public void LogIn()
-            {
-                InstanceContext context = new InstanceContext(this);
-                messageClient = new MessageClient(context, "NetTcpBinding_IMessage");
-                int id = messageClient.LogIn("mihai", "mihai");
-            }
-
-            void IMessageCallback.OnMessageAdded(string message, DateTime timestamp)
-            {
-                Console.WriteLine("<<< [Listner OnMessageAdded] >>> Recieved {0} with a timestamp of {1}", message, timestamp);
-            }
-
-            void IMessageCallback.OnMessageSent(int from, int to, string message, DateTime timestamp)
-            {
-                Console.WriteLine("<<< [Listner OnMessageSent] >>> Recieved {0} with a timestamp of {1}", message, timestamp);
-            }
-
-            void IMessageCallback.OnFriendConnected(int friendId, DateTime timestamp)
-            {
-                Console.WriteLine("<<< [Listner OnFriendConnected] >>> Recieved {0} with a timestamp of {1}", friendId, timestamp);
-            }
-
-            void IMessageCallback.OnFriendDisconnected(int id, DateTime timestamp)
-            {
-                Console.WriteLine("<<< [Listner OnFriendDisconnected] >>> Recieved {0} with a timestamp of {1}", id, timestamp);
-            }
-
-            public void Dispose()
-            {
-                messageClient.Unsubscribe();
-                messageClient.Close();
-            }
+            sender.Register(name, surname, email, phone, username, pass);
         }
     }
 }

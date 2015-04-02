@@ -77,7 +77,7 @@ namespace WCFCallbacks
                GetCallbackChannel<IMessageCallback>();
                 if (subscribers.Contains(callback))
                 {
-                    var c = clients.FirstOrDefault(a=>a.subscriber == callback);
+                    var c = clients.FirstOrDefault(a => a.subscriber == callback);
                     clients.Remove(c);
                     subscribers.Remove(callback);
                 }
@@ -123,13 +123,17 @@ namespace WCFCallbacks
                     if (((ICommunicationObject)callback).State ==
                    CommunicationState.Opened)
                     {
-                        var sub = clients.FirstOrDefault(a=>a.subscriber == callback);
+                        var sub = clients.FirstOrDefault(a => a.subscriber == callback);
                         //daca e prieten
-                        var smth = friends.DefaultIfEmpty().FirstOrDefault(a=>a.UserId == sub.clientId);
-                        if (smth != null)
+                        if (friends.Count > 0)
                         {
-                            callback.OnFriendConnected(id, DateTime.Now);
+                            var smth = friends.DefaultIfEmpty().FirstOrDefault(a => a.UserId == sub.clientId);
+                            if (smth != null)
+                            {
+                                callback.OnFriendConnected(id, DateTime.Now);
+                            }
                         }
+
                     }
                 });
             }
@@ -214,10 +218,13 @@ namespace WCFCallbacks
                 {
                     var sub = clients.FirstOrDefault(a => a.subscriber == callback);
                     //daca e prieten
-                    var smth = friends.DefaultIfEmpty().FirstOrDefault(a => a.UserId == sub.clientId);
-                    if (smth != null)
+                    if (friends.Count >= 0)
                     {
-                        callback.OnFriendDisconnected(userId, DateTime.Now);
+                        var smth = friends.DefaultIfEmpty().FirstOrDefault(a => a.UserId == sub.clientId);
+                        if (smth != null)
+                        {
+                            callback.OnFriendDisconnected(userId, DateTime.Now);
+                        }
                     }
                 }
             });
