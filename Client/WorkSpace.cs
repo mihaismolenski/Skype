@@ -17,7 +17,24 @@ namespace Client
         public WorkSpace(string username)
         {
             InitializeComponent();
+            button1.Enabled = false;
+            BackColor = Color.LightSteelBlue;
             welcome.Text += username + "!";
+        }
+
+        private void TextBoxFriend_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void WorkSpace_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
