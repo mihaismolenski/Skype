@@ -508,6 +508,9 @@ public interface IMessageCallback
     [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IMessage/OnFriendDisconnected")]
     void OnFriendDisconnected(int friendId, System.DateTime timestamp);
 
+    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IMessage/OnFriendAdd")]
+    void OnFriendAdd(int friendId, int targetId);
+
     [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IMessage/OnMessageSent")]
     void OnMessageSent(int from, int to, string message, System.DateTime timestamp);
 }

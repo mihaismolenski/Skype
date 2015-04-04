@@ -18,6 +18,8 @@ namespace WCFCallbacks
         [OperationContract(IsOneWay = true)]
         void OnFriendDisconnected(int friendId, DateTime timestamp);
         [OperationContract(IsOneWay = true)]
+        void OnFriendAdd(int friendId, int targetId);
+        [OperationContract(IsOneWay = true)]
         void OnMessageSent(int from, int to, string message, DateTime timestamp);
     }
 }

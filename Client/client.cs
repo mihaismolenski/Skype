@@ -2,8 +2,9 @@
 using System.ServiceModel;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using Client;
+
 using System.Threading;
+using WCFCallbacks;
 
 // Fisierul Client.cs
 namespace MessageSender
@@ -78,10 +79,11 @@ namespace MessageSender
 
         public static bool Login(string name, string pass)
         {
+            workSpace = new WorkSpace(name);
             int index = sender.LogIn(name, pass);
             if (index >= 0)
             {
-                workSpace = new WorkSpace(name);
+                WorkSpace.userId = index;
                 interfata.Hide();
                 workSpace.Show();
                 return true;
@@ -98,6 +100,32 @@ namespace MessageSender
             string phone = "0323462910";
 
             sender.Register(name, surname, email, phone, username, pass);
+        }
+        public static List<User> GetFriendList(int userId)
+        {
+            List<User> Users = new List<User>();
+            Users = sender.GetFriendList(userId);
+            return Users;
+        }
+        public static void SendMessage(int from, int to, string message)
+        {
+            sender.SendMessage(from, to, message);
+        }
+
+        public static List<WCFCallbacks.Message> GetMessage(int from, int to)
+        {
+            List<WCFCallbacks.Message> messages = sender.GetMessages(from, to);
+             return messages;
+        }
+
+        public static void LogOut(int userID)
+        {
+            sender.LogOut(userID);
+        }
+
+        public static void AddFriend(int userID, int friendId)
+        {
+            sender.AddFriend(userID, friendId);
         }
     }
 }

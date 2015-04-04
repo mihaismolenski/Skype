@@ -55,6 +55,30 @@ namespace WCFCallbacks
                 {
                     subscribers.Add(callback);
                     clients.Add(new CClient() { subscriber = callback, clientId = id });
+                    List<User> friends = new List<User>();
+                    friends = FriendHelper.GetFriends(id);
+                    //daca s-a logat cu succes notificam prietenii lui
+                    if (id > 0)
+                    {
+                        subscribers.ForEach(delegate(IMessageCallback callback2)
+                        {
+                            if (((ICommunicationObject)callback2).State ==
+                           CommunicationState.Opened)
+                            {
+                                var sub = clients.FirstOrDefault(a => a.subscriber == callback2);
+                                //daca e prieten
+                                if (friends.Count > 0)
+                                {
+                                    var smth = friends.DefaultIfEmpty().FirstOrDefault(a => a.UserId == sub.clientId);
+                                    if (smth != null)
+                                    {
+                                        callback2.OnFriendConnected(id, DateTime.Now);
+                                    }
+                                }
+
+                            }
+                        });
+                    }
                 }
                 return true;
             }
@@ -68,17 +92,15 @@ namespace WCFCallbacks
         /// unsubscribe de pe server a clientului
         /// </summary>
         /// <returns></returns>
-        public bool Unsubscribe()
+        public bool Unsubscribe(int id)
         {
             try
             {
-                IMessageCallback callback =
-               OperationContext.Current.
-               GetCallbackChannel<IMessageCallback>();
+                var client = clients.FirstOrDefault(a => a.clientId == id);
+                IMessageCallback callback = client.subscriber;
                 if (subscribers.Contains(callback))
                 {
-                    var c = clients.FirstOrDefault(a => a.subscriber == callback);
-                    clients.Remove(c);
+                    clients.Remove(client);
                     subscribers.Remove(callback);
                 }
                 return true;
@@ -96,7 +118,30 @@ namespace WCFCallbacks
         /// <returns></returns>
         public List<User> GetFriendList(int userId)
         {
-            return FriendHelper.GetFriends(userId);
+            List<User> friends = FriendHelper.GetFriends(userId);
+            //daca s-a logat cu succes notificam prietenii lui
+            if (userId > 0)
+            {
+                subscribers.ForEach(delegate(IMessageCallback callback2)
+                {
+                    if (((ICommunicationObject)callback2).State ==
+                   CommunicationState.Opened)
+                    {
+                        var sub = clients.FirstOrDefault(a => a.subscriber == callback2);
+                        //daca e prieten
+                        if (friends.Count > 0)
+                        {
+                            int index = friends.FindIndex(a => a.UserId == sub.clientId);
+                            if (index >=0)
+                            {
+                                friends[index].Phone = "1";
+                            }
+                        }
+
+                    }
+                });
+            }
+            return friends;
         }
 
         public string Test()
@@ -113,30 +158,6 @@ namespace WCFCallbacks
         public int LogIn(string username, string password)
         {
             int id = AccountHelper.Login(username, password);
-            List<User> friends = new List<User>();
-            friends = FriendHelper.GetFriends(id);
-            //daca s-a logat cu succes notificam prietenii lui
-            if (id > 0)
-            {
-                subscribers.ForEach(delegate(IMessageCallback callback)
-                {
-                    if (((ICommunicationObject)callback).State ==
-                   CommunicationState.Opened)
-                    {
-                        var sub = clients.FirstOrDefault(a => a.subscriber == callback);
-                        //daca e prieten
-                        if (friends.Count > 0)
-                        {
-                            var smth = friends.DefaultIfEmpty().FirstOrDefault(a => a.UserId == sub.clientId);
-                            if (smth != null)
-                            {
-                                callback.OnFriendConnected(id, DateTime.Now);
-                            }
-                        }
-
-                    }
-                });
-            }
             return id;
         }
 
@@ -172,7 +193,7 @@ namespace WCFCallbacks
                 {
                     var sub = clients.FirstOrDefault(a => a.subscriber == callback);
                     //daca e prieten
-                    var smth = friends.DefaultIfEmpty().FirstOrDefault(a => a.UserId == sub.clientId);
+                    var smth = friends.DefaultIfEmpty().FirstOrDefault(a => a.UserId == sub.clientId && a.UserId == to);
                     if (smth != null)
                     {
                         callback.OnMessageSent(from, to, message, DateTime.Now);
@@ -190,17 +211,26 @@ namespace WCFCallbacks
         /// <returns></returns>
         public List<Message> GetMessages(int userId, int friendId)
         {
-            return ConversationHelper.GetConversation(userId, friendId);
+            List<Message> messages =  ConversationHelper.GetConversation(userId, friendId);
+            return messages;
         }
 
         /// <summary>
-        /// adaugare prieten one-way in baza de date
+        /// Adaugare prieten one-way in baza de date
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="friendId"></param>
         public void AddFriend(int userId, int friendId)
         {
             FriendHelper.AddFriend(userId, friendId);
+            subscribers.ForEach(delegate(IMessageCallback callback)
+            {
+                if (((ICommunicationObject)callback).State == CommunicationState.Opened)
+                {
+                    var sub = clients.FirstOrDefault(a => a.subscriber == callback && a.clientId == friendId);
+                    callback.OnFriendAdd(userId, friendId);
+                }
+            });
         }
 
         /// <summary>
@@ -209,8 +239,8 @@ namespace WCFCallbacks
         /// <param name="userId"></param>
         public void LogOut(int userId)
         {
-            List<User> friends = new List<User>();
-            friends = FriendHelper.GetFriends(userId);
+            List<User> friends = FriendHelper.GetFriends(userId);
+            Unsubscribe(userId);
             subscribers.ForEach(delegate(IMessageCallback callback)
             {
                 if (((ICommunicationObject)callback).State ==

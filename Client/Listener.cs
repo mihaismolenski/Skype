@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using System.Threading;
+using WCFCallbacks;
 
 
 namespace MessageSender
@@ -18,6 +19,7 @@ namespace MessageSender
     class Listener : IMessageCallback, IDisposable
     {
         private MessageClient messageClient;
+        public static List<int> friends;
         public void Open()
         {
             // Reprezinta informatia de context pentru instanta serviciului
@@ -34,9 +36,10 @@ namespace MessageSender
             */
             // al doilea parametru fiind bindingConfiguration
             // context e necesar in procesul callback
+
+            friends = new List<int>();
             InstanceContext context = new InstanceContext(this);
             messageClient = new MessageClient(context, "NetTcpBinding_IMessage");
-            messageClient.Subscribe(1);
         }
 
         void IMessageCallback.OnMessageAdded(string message, DateTime timestamp)
@@ -49,7 +52,6 @@ namespace MessageSender
         void IMessageCallback.OnMessageSent(int from, int to, string message, DateTime timestamp)
         {
             Console.WriteLine("<<< [Listner OnMessageSent] >>> Recieved {0} with a timestamp of {1}", message, timestamp);
-
         }
 
         void IMessageCallback.OnFriendConnected(int friendId, DateTime timestamp)
@@ -61,6 +63,11 @@ namespace MessageSender
         void IMessageCallback.OnFriendDisconnected(int id, DateTime timestamp)
         {
             Console.WriteLine("<<< [Listner OnFriendDisconnected] >>> Recieved {0} with a timestamp of {1}", id, timestamp);
+        }
+
+        void IMessageCallback.OnFriendAdd(int traget, int from)
+        {
+
         }
 
         public void Dispose()

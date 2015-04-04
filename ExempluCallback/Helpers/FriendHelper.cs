@@ -13,13 +13,21 @@ namespace WCFCallbacks
         {
             using (var dc = new SkypeEntities())
             {
+                dc.Configuration.ProxyCreationEnabled = false;
                 var friend = new Friend()
                 {
                     UserId = userID,
                     FriendId = friendId
                 };
 
+                var friend2 = new Friend()
+                {
+                    UserId = friendId,
+                    FriendId = userID
+                };
+
                 dc.Friends.Add(friend);
+                dc.Friends.Add(friend2);
                 dc.SaveChanges();
             }
         }

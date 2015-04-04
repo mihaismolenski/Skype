@@ -30,6 +30,7 @@ namespace WCFCallbacks
         {
             using (var dc = new SkypeEntities())
             {
+                dc.Configuration.ProxyCreationEnabled = false;
                 var messages = new List<Message>();
                 messages = dc.Messages.Where(a=>(a.FromUser == userId && a.ToUser == friendId) || (a.FromUser == friendId && a.ToUser == userId)).OrderBy(a=>a.Date).ToList();
 
